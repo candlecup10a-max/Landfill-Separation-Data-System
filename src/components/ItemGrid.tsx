@@ -21,10 +21,12 @@ import {
   Camera,
   ChevronRight,
   ShieldCheck,
-  Tag
+  Tag,
+  Barcode
 } from 'lucide-react';
 import { WasteItem, CategoryId, RacurAngle } from '../types';
 import { CATEGORIES_CONFIG } from '../data/initialData';
+import { BarcodeCell } from './BarcodeCell';
 
 interface ItemGridProps {
   items: WasteItem[];
@@ -60,6 +62,7 @@ export const ItemGrid: React.FC<ItemGridProps> = ({
       item.id.toLowerCase().includes(query) ||
       item.name.toLowerCase().includes(query) ||
       item.material.toLowerCase().includes(query) ||
+      (item.barcode && item.barcode.toLowerCase().includes(query)) ||
       (item.subCategory && item.subCategory.toLowerCase().includes(query)) ||
       (item.industrySector && item.industrySector.toLowerCase().includes(query));
     return matchesCategory && matchesSearch;
@@ -338,6 +341,11 @@ export const ItemGrid: React.FC<ItemGridProps> = ({
 
                     {/* Meta Spec Badges */}
                     <div className="flex items-center gap-2 flex-wrap text-[10px] text-slate-500 font-mono">
+                      {item.barcode && (
+                        <div className="flex items-center gap-1">
+                          <BarcodeCell code={item.barcode} size="compact" showCodeText={true} />
+                        </div>
+                      )}
                       <span className="font-medium text-emerald-800 bg-emerald-50/80 px-1 py-0.1 rounded border border-emerald-200/80">
                         {item.material}
                       </span>
@@ -460,8 +468,8 @@ export const ItemGrid: React.FC<ItemGridProps> = ({
                 </div>
 
                 {/* Info Container */}
-                <div className="p-2 space-y-1 flex-1 flex flex-col justify-between">
-                  <div>
+                <div className="p-2 space-y-1.5 flex-1 flex flex-col justify-between">
+                  <div className="space-y-1">
                     <h3 className="text-xs font-bold text-slate-900 group-hover:text-emerald-700 transition-colors line-clamp-1 leading-tight">
                       {item.name}
                     </h3>
@@ -469,6 +477,13 @@ export const ItemGrid: React.FC<ItemGridProps> = ({
                     <div className="text-[10px] text-slate-500 font-mono truncate">
                       {item.material}
                     </div>
+
+                    {/* Barcode cell */}
+                    {item.barcode && (
+                      <div className="pt-0.5">
+                        <BarcodeCell code={item.barcode} size="compact" showCodeText={true} className="w-full" />
+                      </div>
+                    )}
                   </div>
 
                   {/* Dimensions & Quick Actions */}
@@ -522,6 +537,7 @@ export const ItemGrid: React.FC<ItemGridProps> = ({
                     </button>
                   </th>
                   <th className="py-2 px-2">ID</th>
+                  <th className="py-2 px-2">Barcode</th>
                   <th className="py-2 px-2">Product Name</th>
                   <th className="py-2 px-2">Chute & Category</th>
                   <th className="py-2 px-2">Material</th>
@@ -551,6 +567,13 @@ export const ItemGrid: React.FC<ItemGridProps> = ({
                         )}
                       </td>
                       <td className="py-1.5 px-2 font-mono font-bold text-slate-900 text-[11px]">{item.id}</td>
+                      <td className="py-1.5 px-2">
+                        {item.barcode ? (
+                          <BarcodeCell code={item.barcode} size="compact" showCodeText={true} />
+                        ) : (
+                          <span className="text-[10px] text-slate-400 font-mono italic">None</span>
+                        )}
+                      </td>
                       <td className="py-1.5 px-2 font-semibold text-slate-900 max-w-xs truncate">{item.name}</td>
                       <td className="py-1.5 px-2">
                         <span

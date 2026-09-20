@@ -13,13 +13,15 @@ import {
   Image as ImageIcon,
   HelpCircle,
   Eye,
-  Radio
+  Radio,
+  Barcode
 } from 'lucide-react';
 import { CategoryId, WasteItem, ItemImage, RacurAngle, SensorTelemetry } from '../types';
 import { CATEGORIES_CONFIG, createStandardRacurSet, generateRacurSvgUrl } from '../data/initialData';
 import { generateDefaultSensorTelemetry } from '../utils/sensorPresets';
 import { MaterialSensorWorkbench } from './MaterialSensorWorkbench';
 import { CameraCaptureModal } from './CameraCaptureModal';
+import { BarcodeCell } from './BarcodeCell';
 
 interface ItemRegistrationModalProps {
   isOpen: boolean;
@@ -52,6 +54,7 @@ export const ItemRegistrationModal: React.FC<ItemRegistrationModalProps> = ({
   const [categoryId, setCategoryId] = useState<CategoryId>(initialCategory);
   const [itemId, setItemId] = useState<string>('');
   const [name, setName] = useState<string>('');
+  const [barcode, setBarcode] = useState<string>('');
   const [material, setMaterial] = useState<string>('');
   const [heightCm, setHeightCm] = useState<string>('20');
   const [widthCm, setWidthCm] = useState<string>('8');
@@ -101,6 +104,7 @@ export const ItemRegistrationModal: React.FC<ItemRegistrationModalProps> = ({
       setCategoryId(editItem.categoryId);
       setItemId(editItem.id);
       setName(editItem.name);
+      setBarcode(editItem.barcode || '');
       setMaterial(editItem.material);
       setHeightCm(String(editItem.heightCm));
       setWidthCm(String(editItem.widthCm));
@@ -119,6 +123,7 @@ export const ItemRegistrationModal: React.FC<ItemRegistrationModalProps> = ({
       setCategoryId(initCat);
       setItemId(generateNextId(initCat));
       setName('');
+      setBarcode('');
       const defaultMat = currentCategoryConfig.materialsList[0] || '';
       setMaterial(defaultMat);
       setHeightCm('20');
@@ -295,6 +300,7 @@ export const ItemRegistrationModal: React.FC<ItemRegistrationModalProps> = ({
       id: itemId.trim().toUpperCase(),
       name: name.trim(),
       categoryId,
+      barcode: barcode.trim() || undefined,
       material: material.trim(),
       heightCm: parseFloat(heightCm),
       widthCm: parseFloat(widthCm),
@@ -491,6 +497,46 @@ export const ItemRegistrationModal: React.FC<ItemRegistrationModalProps> = ({
                   placeholder="Sector (e.g. Packaging)"
                   className="w-full px-3 py-2 rounded-xl bg-slate-50 border border-slate-200 text-xs text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-500"
                 />
+              </div>
+            </div>
+
+            {/* Barcode & Packaging Code */}
+            <div className="md:col-span-2 space-y-1.5 p-3 rounded-xl bg-slate-50 border border-slate-200">
+              <div className="flex items-center justify-between">
+                <label className="text-xs font-semibold text-slate-700 flex items-center gap-1.5">
+                  <Barcode className="w-4 h-4 text-emerald-600" />
+                  <span>Item Barcode / GTIN / UPC / SKU</span>
+                </label>
+                <span className="text-[10px] text-slate-400 font-mono">Optical or laser scanner barcode</span>
+              </div>
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+                <div className="flex-1 relative">
+                  <input
+                    type="text"
+                    id="input-item-barcode"
+                    value={barcode}
+                    onChange={(e) => setBarcode(e.target.value)}
+                    placeholder="e.g. 079357319402 or EAN-13 / SKU"
+                    className="w-full px-3.5 py-2 rounded-xl bg-white border border-slate-200 text-xs font-mono text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                  />
+                </div>
+                {barcode.trim() ? (
+                  <div className="flex items-center gap-2 px-3 py-1.5 bg-white rounded-xl border border-slate-200 shrink-0">
+                    <span className="text-[10px] font-mono text-slate-400 font-bold uppercase">Preview:</span>
+                    <BarcodeCell code={barcode.trim()} size="standard" showCodeText={true} />
+                  </div>
+                ) : (
+                  <button
+                    type="button"
+                    onClick={() => {
+                      const rand = Math.floor(100000000000 + Math.random() * 900000000000).toString();
+                      setBarcode(rand);
+                    }}
+                    className="px-3 py-2 rounded-xl text-[11px] font-mono font-medium text-emerald-700 bg-white hover:bg-emerald-50 border border-slate-200 hover:border-emerald-300 transition-colors shrink-0"
+                  >
+                    + Generate Barcode
+                  </button>
+                )}
               </div>
             </div>
           </div>

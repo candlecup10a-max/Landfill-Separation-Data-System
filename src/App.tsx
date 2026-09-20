@@ -390,13 +390,13 @@ export default function App() {
         <div className="flex items-center gap-3 shrink-0 ml-4">
           <button
             onClick={() => setIsGuideModalOpen(true)}
-            className="text-emerald-700 hover:text-emerald-800 font-bold hover:underline cursor-pointer flex items-center gap-1"
+            className="text-slate-600 hover:text-slate-900 font-bold hover:underline flex items-center gap-1"
             title="Read SYSTEM_GUIDE.md"
           >
             SYSTEM_GUIDE.md
           </button>
           <span className="text-slate-300">|</span>
-          <span>AI Sorter v2.4 (LANDFILL-SEP-800)</span>
+          <span>AI Sorter v2.5 (LANDFILL-SEP-800)</span>
           <span className="text-slate-300">|</span>
           <span className="text-slate-700 font-bold">6 CHANNELS ACTIVE</span>
         </div>

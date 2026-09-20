@@ -231,7 +231,7 @@ export const RawDataScrollCell: React.FC<RawDataScrollCellProps> = ({
                 key={cat.id}
                 id={`btn-file-tab-${cat.id}`}
                 onClick={() => handleSwitchCategory(cat.id)}
-                className={`flex items-center gap-1.5 px-2 py-1 rounded-lg text-xs font-mono font-medium transition-all shrink-0 cursor-pointer ${
+                className={`flex items-center gap-1.5 px-2 py-1 rounded-lg text-xs font-mono font-medium transition-all shrink-0 ${
                   active
                     ? 'bg-slate-100 text-slate-900 border border-emerald-600 shadow-2xs ring-1 ring-emerald-600/30'
                     : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50 border border-transparent'
@@ -254,7 +254,7 @@ export const RawDataScrollCell: React.FC<RawDataScrollCellProps> = ({
         <div className="flex items-center gap-0.5 bg-slate-100 p-0.5 rounded-lg border border-slate-200 shrink-0">
           <button
             onClick={() => setViewFormat('table')}
-            className={`flex items-center gap-1 px-2 py-0.5 rounded-md text-xs font-semibold transition-colors cursor-pointer ${
+            className={`flex items-center gap-1 px-2 py-0.5 rounded-md text-xs font-semibold transition-colors ${
               viewFormat === 'table'
                 ? 'bg-white text-emerald-700 shadow-2xs font-bold'
                 : 'text-slate-600 hover:text-slate-900'
@@ -269,7 +269,7 @@ export const RawDataScrollCell: React.FC<RawDataScrollCellProps> = ({
               setViewFormat('raw');
               setRawTextDraft(currentDataset.rawText);
             }}
-            className={`flex items-center gap-1 px-2 py-0.5 rounded-md text-xs font-semibold transition-colors cursor-pointer ${
+            className={`flex items-center gap-1 px-2 py-0.5 rounded-md text-xs font-semibold transition-colors ${
               viewFormat === 'raw'
                 ? 'bg-white text-emerald-700 shadow-2xs font-bold'
                 : 'text-slate-600 hover:text-slate-900'
@@ -329,7 +329,7 @@ export const RawDataScrollCell: React.FC<RawDataScrollCellProps> = ({
 
             <button
               onClick={handleDownloadCurrentFile}
-              className="flex items-center gap-1 px-2 py-0.5 text-xs font-medium text-slate-700 hover:text-slate-900 bg-white hover:bg-slate-100 rounded-md border border-slate-200 shadow-2xs transition-colors cursor-pointer"
+              className="flex items-center gap-1 px-2 py-0.5 text-xs font-medium text-slate-700 hover:text-slate-900 bg-white hover:bg-slate-100 rounded-md border border-slate-200 shadow-2xs transition-colors"
               title="Download this file"
             >
               <Download className="w-3 h-3" />
@@ -338,7 +338,7 @@ export const RawDataScrollCell: React.FC<RawDataScrollCellProps> = ({
 
             <button
               onClick={handleCopyRaw}
-              className="flex items-center gap-1 px-2 py-0.5 text-xs font-medium text-slate-700 hover:text-slate-900 bg-white hover:bg-slate-100 rounded-md border border-slate-200 shadow-2xs transition-colors cursor-pointer"
+              className="flex items-center gap-1 px-2 py-0.5 text-xs font-medium text-slate-700 hover:text-slate-900 bg-white hover:bg-slate-100 rounded-md border border-slate-200 shadow-2xs transition-colors"
               title="Copy contents"
             >
               {copied ? <CheckCheck className="w-3 h-3 text-emerald-600" /> : <Copy className="w-3 h-3" />}
@@ -347,7 +347,7 @@ export const RawDataScrollCell: React.FC<RawDataScrollCellProps> = ({
 
             <button
               onClick={handleResetCurrentFile}
-              className="p-1 text-slate-400 hover:text-slate-800 hover:bg-slate-100 rounded-md border border-slate-200 shadow-2xs cursor-pointer"
+              className="p-1 text-slate-400 hover:text-slate-800 hover:bg-slate-100 rounded-md border border-slate-200 shadow-2xs"
               title="Reset this file to default values"
             >
               <RotateCcw className="w-3 h-3" />
@@ -359,7 +359,7 @@ export const RawDataScrollCell: React.FC<RawDataScrollCellProps> = ({
                   setIsAddingRow(!isAddingRow);
                   setNewRowData({});
                 }}
-                className="flex items-center gap-1 px-2.5 py-0.5 text-xs font-semibold text-white bg-emerald-600 hover:bg-emerald-500 rounded-md shadow-2xs active:scale-95 transition-all cursor-pointer"
+                className="flex items-center gap-1 px-2.5 py-0.5 text-xs font-semibold text-white bg-emerald-600 hover:bg-emerald-500 rounded-md shadow-2xs active:scale-95 transition-all"
               >
                 <Plus className="w-3 h-3 stroke-[2.5]" />
                 <span className="text-[11px]">Add Row</span>

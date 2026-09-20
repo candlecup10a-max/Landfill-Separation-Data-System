@@ -250,11 +250,13 @@ export const DatasetExporter: React.FC<DatasetExporterProps> = ({
 
             <button
               onClick={handleDownloadCurrent}
-              className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold text-white bg-emerald-600 hover:bg-emerald-500 rounded-lg shadow-sm active:scale-95 cursor-pointer"
+              className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold text-white bg-emerald-600 hover:bg-emerald-500 rounded-lg shadow-sm active:scale-95"
             >
               <Download className="w-3.5 h-3.5" />
               <span>
-                {activeExportFormat === 'guide' ? 'Download SYSTEM_GUIDE.md' : 'Download Package'}
+                {activeExportFormat === 'guide'
+                  ? 'Download SYSTEM_GUIDE.md'
+                  : 'Download Package'}
               </span>
             </button>
           </div>

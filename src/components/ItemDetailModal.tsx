@@ -23,6 +23,7 @@ import {
 import { WasteItem, RacurAngle } from '../types';
 import { CATEGORIES_CONFIG } from '../data/initialData';
 import { Rotation360Preview } from './Rotation360Preview';
+import { BarcodeCell } from './BarcodeCell';
 
 interface ItemDetailModalProps {
   item: WasteItem | null;

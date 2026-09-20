@@ -8,7 +8,6 @@ import {
   Download, 
   Plus, 
   RotateCcw, 
-  ShieldCheck,
   Zap,
   User,
   LogIn,
@@ -197,7 +196,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 id="btn-navbar-system-guide"
                 onClick={onOpenGuide}
                 title="View Machine Compatibility & System Integration Guide (SYSTEM_GUIDE.md)"
-                className="flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-mono font-semibold text-slate-700 bg-white hover:bg-slate-50 border border-slate-200 hover:border-slate-300 shadow-2xs transition-all cursor-pointer"
+                className="flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-mono font-semibold text-slate-700 bg-white hover:bg-slate-50 border border-slate-200 hover:border-slate-300 shadow-2xs transition-all"
               >
                 <BookOpen className="w-3.5 h-3.5 text-emerald-600" />
                 <span className="hidden sm:inline">Guide</span>
@@ -209,7 +208,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               id="btn-toggle-fullscreen"
               onClick={toggleFullscreen}
               title={isFullscreen ? "Exit Fullscreen" : "Fullscreen"}
-              className="p-1.5 rounded-lg border border-slate-200 hover:border-slate-300 bg-white hover:bg-slate-50 text-slate-600 font-mono text-xs transition-all shadow-2xs cursor-pointer"
+              className="p-1.5 rounded-lg border border-slate-200 hover:border-slate-300 bg-white hover:bg-slate-50 text-slate-600 font-mono text-xs transition-all shadow-2xs"
             >
               {isFullscreen ? (
                 <Minimize2 className="w-3.5 h-3.5 text-emerald-600" />

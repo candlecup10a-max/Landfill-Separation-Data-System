@@ -31,6 +31,7 @@ import {
   KeyRound,
   Sparkles
 } from 'lucide-react';
+import { downloadFile } from '../utils/csvParser';
 import { 
   AuthUser, 
   UserRole, 
@@ -344,7 +345,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                 <span className="text-[10px]">L{currentUser.clearanceLevel}</span>
                 <button
                   onClick={() => onSwitchUser(DEMO_OPERATORS.admin)}
-                  className="px-2 py-0.5 rounded bg-amber-600 hover:bg-amber-500 text-white font-bold text-[10px] transition-colors cursor-pointer"
+                  className="px-2 py-0.5 rounded bg-amber-600 hover:bg-amber-500 text-white font-bold text-[10px] transition-colors"
                 >
                   Elevate
                 </button>
@@ -355,7 +356,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
             <button
               id="btn-emergency-stop"
               onClick={handleToggleEmergencyStop}
-              className={`flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-lg font-mono text-xs font-bold transition-all shadow-xs active:scale-98 cursor-pointer ${
+              className={`flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-lg font-mono text-xs font-bold transition-all shadow-xs active:scale-98 ${
                 hardwareConfig.emergencyStopEngaged
                   ? 'bg-amber-500 hover:bg-amber-400 text-slate-950 ring-2 ring-amber-500/30'
                   : 'bg-rose-600 hover:bg-rose-500 text-white ring-2 ring-rose-600/30'
@@ -394,7 +395,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
       <div className="flex items-center gap-1 p-1 bg-slate-100 rounded-xl border border-slate-200 overflow-x-auto">
         <button
           onClick={() => setAdminTab('hardware')}
-          className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-mono font-bold transition-all shrink-0 cursor-pointer ${
+          className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-mono font-bold transition-all shrink-0 ${
             adminTab === 'hardware'
               ? 'bg-white text-emerald-700 shadow-2xs border border-slate-200'
               : 'text-slate-600 hover:text-slate-900 hover:bg-slate-200/60'
@@ -406,7 +407,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
 
         <button
           onClick={() => setAdminTab('operators')}
-          className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-mono font-bold transition-all shrink-0 cursor-pointer ${
+          className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-mono font-bold transition-all shrink-0 ${
             adminTab === 'operators'
               ? 'bg-white text-emerald-700 shadow-2xs border border-slate-200'
               : 'text-slate-600 hover:text-slate-900 hover:bg-slate-200/60'
@@ -419,7 +420,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
 
         <button
           onClick={() => setAdminTab('sensors')}
-          className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-mono font-bold transition-all shrink-0 cursor-pointer ${
+          className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-mono font-bold transition-all shrink-0 ${
             adminTab === 'sensors'
               ? 'bg-white text-emerald-700 shadow-2xs border border-slate-200'
               : 'text-slate-600 hover:text-slate-900 hover:bg-slate-200/60'
@@ -431,7 +432,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
 
         <button
           onClick={() => setAdminTab('audit')}
-          className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-mono font-bold transition-all shrink-0 cursor-pointer ${
+          className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-mono font-bold transition-all shrink-0 ${
             adminTab === 'audit'
               ? 'bg-white text-emerald-700 shadow-2xs border border-slate-200'
               : 'text-slate-600 hover:text-slate-900 hover:bg-slate-200/60'
@@ -444,7 +445,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
 
         <button
           onClick={() => setAdminTab('database')}
-          className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-mono font-bold transition-all shrink-0 cursor-pointer ${
+          className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-mono font-bold transition-all shrink-0 ${
             adminTab === 'database'
               ? 'bg-white text-emerald-700 shadow-2xs border border-slate-200'
               : 'text-slate-600 hover:text-slate-900 hover:bg-slate-200/60'
@@ -841,7 +842,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
               <button
                 onClick={handleRunDiagnostics}
                 disabled={diagnosticsRunning}
-                className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-mono font-bold shadow-sm transition-all disabled:opacity-75 cursor-pointer"
+                className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-mono font-bold shadow-sm transition-all disabled:opacity-75"
               >
                 <Zap className={`w-4 h-4 ${diagnosticsRunning ? 'animate-spin' : ''}`} />
                 <span>{diagnosticsRunning ? 'Testing Sensor Array...' : 'Run Diagnostics Sweep'}</span>

@@ -71,6 +71,7 @@ export interface WasteItem {
   id: string;                      // e.g. "PLS-001"
   name: string;                    // e.g. "Water Bottle 500ml"
   categoryId: CategoryId;          // plastic, iron_aluminum, etc.
+  barcode?: string;                // e.g. "793573194028" or "EAN-13 / UPC / SKU"
   material: string;                // e.g. "PET (Resin #1)", "Aluminum", "Borosilicate Glass"
   heightCm: number;                // Height in cm
   widthCm: number;                 // Width in cm
