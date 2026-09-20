@@ -1,0 +1,54 @@
+@import "tailwindcss";
+
+@layer utilities {
+  @keyframes laserScan {
+    0% {
+      left: 0%;
+      opacity: 0.8;
+    }
+    50% {
+      left: 100%;
+      opacity: 1;
+    }
+    100% {
+      left: 0%;
+      opacity: 0.8;
+    }
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: scale(0.98);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  .animate-laserScan {
+    animation: laserScan 2s ease-in-out infinite;
+  }
+
+  .animate-fadeIn {
+    animation: fadeIn 0.15s ease-out forwards;
+  }
+}
+
+/* High Density Light scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #F1F5F9;
+}
+::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94A3B8;
+}
+

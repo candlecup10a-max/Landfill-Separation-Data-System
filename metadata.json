@@ -1,0 +1,10 @@
+{
+  "name": "Landfill Separation Data System",
+  "description": "Dataset collection, item registration with multi-angle imagery, AI simulated 360-degree rotation video preview, and training manager for a 6-category AI waste sorting machine.",
+  "requestFramePermissions": [
+    "camera"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
